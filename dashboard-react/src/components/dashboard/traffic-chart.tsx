@@ -115,8 +115,8 @@ export function TrafficChart({
 
   if (!loading && points.length === 0) {
     return (
-      <div className="flex h-[330px] flex-col items-center justify-center rounded-xl border border-dashed border-white/10 bg-black/10 text-center">
-        <div className="mb-3 size-2 rounded-full bg-violet-400 shadow-[0_0_20px_rgba(167,139,250,0.9)]" />
+      <div className="flex h-[330px] flex-col items-center justify-center rounded-xl border border-dashed border-white/10 bg-[#fbfcf9] text-center">
+        <div className="mb-3 size-2 rounded-full bg-emerald-600" />
 
         <p className="text-sm font-medium text-foreground">
           Waiting for telemetry
@@ -135,9 +135,9 @@ export function TrafficChart({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="relative overflow-hidden rounded-xl border border-white/5 bg-black/10"
+      className="relative overflow-hidden rounded-xl border border-white/5 bg-[#fbfcf9]"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-violet-500/5 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-transparent to-transparent" />
 
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
@@ -155,17 +155,17 @@ export function TrafficChart({
           >
             <stop
               offset="0%"
-              stopColor="rgb(139 92 246)"
+              stopColor="#34775a"
               stopOpacity="0.42"
             />
             <stop
               offset="75%"
-              stopColor="rgb(59 130 246)"
+              stopColor="#34775a"
               stopOpacity="0.08"
             />
             <stop
               offset="100%"
-              stopColor="rgb(59 130 246)"
+              stopColor="#34775a"
               stopOpacity="0"
             />
           </linearGradient>
@@ -177,7 +177,7 @@ export function TrafficChart({
             width={innerWidth}
             height={innerHeight}
             numTicks={5}
-            stroke="rgba(255,255,255,0.08)"
+            stroke="#e4e5df"
             strokeDasharray="4 6"
           />
 
@@ -188,7 +188,7 @@ export function TrafficChart({
               y={yScale(tick)}
               dy="0.32em"
               textAnchor="end"
-              fill="rgba(255,255,255,0.38)"
+              fill="#747b73"
               fontSize={11}
             >
               {formatTraffic(tick)}
@@ -201,7 +201,7 @@ export function TrafficChart({
               x={xScale(tick)}
               y={innerHeight + 28}
               textAnchor="middle"
-              fill="rgba(255,255,255,0.38)"
+              fill="#747b73"
               fontSize={11}
             >
               {formatTime(tick)}
@@ -228,7 +228,7 @@ export function TrafficChart({
                 }
                 y={(point) => yScale(point.actual ?? 0)}
                 curve={curveMonotoneX}
-                stroke="rgb(139 92 246)"
+                stroke="#34775a"
                 strokeWidth={3}
                 strokeLinecap="round"
               />
@@ -243,7 +243,7 @@ export function TrafficChart({
               }
               y={(point) => yScale(point.predicted ?? 0)}
               curve={curveMonotoneX}
-              stroke="rgb(34 211 238)"
+              stroke="#4d758d"
               strokeWidth={3}
               strokeDasharray="8 7"
               strokeLinecap="round"
@@ -259,7 +259,7 @@ export function TrafficChart({
               defined={(point) => point.capacity !== null}
               y={(point) => yScale(point.capacity ?? 0)}
               curve={curveMonotoneX}
-              stroke="rgba(251,191,36,0.75)"
+              stroke="#b48139"
               strokeWidth={1.5}
               strokeDasharray="3 7"
             />
@@ -272,7 +272,7 @@ export function TrafficChart({
                 x2={xScale(new Date(activePoint.timestamp))}
                 y1={0}
                 y2={innerHeight}
-                stroke="rgba(255,255,255,0.3)"
+                stroke="#7b8d7d"
                 strokeDasharray="3 4"
               />
 
@@ -280,8 +280,8 @@ export function TrafficChart({
                 cx={xScale(new Date(activePoint.timestamp))}
                 cy={yScale(activeValue)}
                 r={5}
-                fill="rgb(15 23 42)"
-                stroke="rgb(167 139 250)"
+                fill="#ffffff"
+                stroke="#34775a"
                 strokeWidth={3}
               />
 
@@ -298,7 +298,7 @@ export function TrafficChart({
                   width={162}
                   height={82}
                   rx={10}
-                  fill="rgba(9,9,15,0.94)"
+                  fill="#20382d"
                   stroke="rgba(255,255,255,0.12)"
                 />
 
@@ -314,7 +314,7 @@ export function TrafficChart({
                 <text
                   x={12}
                   y={42}
-                  fill="rgb(196 181 253)"
+                  fill="#d3ef8d"
                   fontSize={12}
                   fontWeight={600}
                 >
@@ -327,7 +327,7 @@ export function TrafficChart({
                 <text
                   x={12}
                   y={61}
-                  fill="rgb(103 232 249)"
+                  fill="#a8cfe3"
                   fontSize={12}
                   fontWeight={600}
                 >

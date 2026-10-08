@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button } from './components/ui/button';
 import { Card } from './components/ui/card';
 import { TrafficChart } from './components/dashboard/traffic-chart';
+import { FluxScaleMark } from './components/brand/fluxscale-mark';
 import './connected.css';
 
 type Policy = { enabled: boolean; min_replicas: number; max_replicas: number; version: number };
@@ -29,7 +30,7 @@ export default function ConnectedApp() {
   const current = detail.data; const snapshot = current?.host?.snapshot; const latest = snapshot?.metrics.at(-1); const fresh = !!current?.host?.online && !!latest && current.host.last_seen - Date.parse(latest.timestamp) < 30000;
   const traffic = snapshot?.metrics.map(metric => ({ timestamp: metric.timestamp, actual: metric.requests_per_second, predicted: null, capacity: null })) ?? [];
   return <div className="connected-shell">
-    <header className="connected-header"><a href="/connected" className="connected-brand">FluxScale <span>Connected</span></a>{session.data && <div>{session.data.email} <Button variant="outline" disabled={busy} onClick={() => void action(async () => { await request('/api/auth/logout', 'POST', {}, session.data?.csrf); cache.clear(); setEnrollment(null); })}>Sign out</Button></div>}</header>
+    <header className="connected-header"><a href="/connected" className="connected-brand"><FluxScaleMark /> <strong>FluxScale</strong> <span>Deployments</span></a>{session.data && <div>{session.data.email} <Button variant="outline" disabled={busy} onClick={() => void action(async () => { await request('/api/auth/logout', 'POST', {}, session.data?.csrf); cache.clear(); setEnrollment(null); })}>Sign out</Button></div>}</header>
     {error && <p role="alert" className="connected-error">{error}</p>}
     {!session.data ? <Card className="connected-login"><h1>{register ? 'Create your account' : 'Sign in to FluxScale'}</h1><p>Connect your deployment and scale actual application containers.</p><form onSubmit={login}>
       <label>Email<input name="email" type="email" autoComplete="username" required maxLength={254} /></label>

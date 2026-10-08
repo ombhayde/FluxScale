@@ -57,9 +57,14 @@ try {
 for (const cpus of [0.5, 2]) {
   const name = `fluxscale-quota-check-${randomUUID()}`;
   try {
-    const { stdout } = await exec('docker', ['run', '--rm', '--name', name, '--network', 'none',
-      '--cpus', String(cpus), '--memory', '256m', '-v', `${root}:/verification:ro`,
-      '--entrypoint', 'node', 'fluxscale/express-demo:v1', '/verification/check.mjs', String(cpus)],
+    await exec('docker', ['create', '--name', name, '--network', 'none',
+      '--cpus', String(cpus), '--memory', '256m',
+      '--entrypoint', 'node', 'fluxscale/express-demo:v1', '/tmp/check.mjs', String(cpus)],
+    { windowsHide: true, timeout: 30_000 });
+    // Copy the fixture so the non-root container can read it on Linux hosts too.
+    await exec('docker', ['cp', join(root, 'check.mjs'), `${name}:/tmp/check.mjs`],
+      { windowsHide: true, timeout: 10_000 });
+    const { stdout } = await exec('docker', ['start', '--attach', name],
     { windowsHide: true, timeout: 30_000, maxBuffer: 64 * 1024 });
     const result = JSON.parse(stdout.trim());
     assert.equal(result.cpus, cpus);

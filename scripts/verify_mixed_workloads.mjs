@@ -15,7 +15,7 @@ const docker=async args=>(await exec('docker',args,{env,windowsHide:true,timeout
 try {
   await docker(['network','create',name]);
   await docker(['run','-d','--name',database,'--network',name,'--memory','512m','--cpus','1','--env','POSTGRES_PASSWORD','--env','POSTGRES_USER=fluxscale','--env','POSTGRES_DB=fluxscale','postgres:18-alpine']);
-  let ready=false;for(let i=0;i<60;i++){try{await docker(['exec',database,'pg_isready','-U','fluxscale']);ready=true;break;}catch{await new Promise(r=>setTimeout(r,500));}}assert(ready,'PostgreSQL ready');
+  let ready=false;for(let i=0;i<60;i++){try{await docker(['exec',database,'pg_isready','-h','127.0.0.1','-U','fluxscale']);ready=true;break;}catch{await new Promise(r=>setTimeout(r,500));}}assert(ready,'PostgreSQL ready');
   await docker(['cp',join(root,'sdk/node/examples/express/seed.sql'),database+':/tmp/seed.sql']);
   await docker(['exec',database,'psql','-U','fluxscale','-d','fluxscale','-v','ON_ERROR_STOP=1','-f','/tmp/seed.sql']);
   const urls=[];

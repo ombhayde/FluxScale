@@ -30,8 +30,8 @@ import {
   TriangleAlert,
   Trash2,
   Zap,
-  type LucideIcon,
-} from "lucide-react";
+  type FluxIcon,
+} from "@/components/brand/flux-icons";
 
 import Loader from "@/components/kokonutui/loader";
 import { FluxScaleMark } from "@/components/brand/fluxscale-mark";
@@ -100,7 +100,7 @@ interface KpiCardProps {
   label: string;
   value: string;
   detail: string;
-  icon: LucideIcon;
+  icon: FluxIcon;
   accentClass: string;
   index: number;
 }
@@ -237,14 +237,14 @@ function StatusBadge({ status }: { status: ServiceStatus }) {
       "border-amber-400/20 bg-amber-400/10 text-amber-700",
     critical: "border-red-400/20 bg-red-400/10 text-red-700",
     scaling:
-      "border-violet-400/20 bg-violet-400/10 text-indigo-700",
+      "border-emerald-400/20 bg-emerald-400/10 text-emerald-700",
   };
 
   const dots: Record<ServiceStatus, string> = {
     healthy: "bg-emerald-400",
     degraded: "bg-amber-400",
     critical: "bg-red-400",
-    scaling: "animate-pulse bg-violet-400",
+    scaling: "animate-pulse bg-emerald-400",
   };
 
   return (
@@ -263,7 +263,7 @@ function ActionBadge({ action }: { action: ScalingAction }) {
     return (
       <Badge
         variant="outline"
-        className="gap-1 border-violet-400/20 bg-violet-400/10 text-indigo-700"
+        className="gap-1 border-emerald-400/20 bg-emerald-400/10 text-emerald-700"
       >
         <ArrowUpRight className="size-3" />
         Scale up
@@ -286,7 +286,7 @@ function ActionBadge({ action }: { action: ScalingAction }) {
   return (
     <Badge
       variant="outline"
-      className="border-slate-200 bg-slate-100 text-muted-foreground"
+      className="border-stone-200 bg-stone-100 text-muted-foreground"
     >
       Hold
     </Badge>
@@ -319,10 +319,10 @@ function KpiCard({
         </div>
         <div className="min-w-0">
           <p className="console-eyebrow">{label}</p>
-          <p className="mt-1 truncate text-xl font-semibold tracking-[-0.03em] text-slate-950">
+          <p className="console-metric__value mt-1 truncate">
             {value}
           </p>
-          <p className="mt-0.5 truncate text-[11px] text-slate-500">{detail}</p>
+          <p className="mt-0.5 truncate text-[11px] text-stone-500">{detail}</p>
         </div>
       </div>
     </motion.div>
@@ -353,7 +353,7 @@ function DashboardError({
         </CardHeader>
 
         <CardContent>
-          <pre className="mb-5 overflow-auto rounded-lg border border-slate-200 bg-slate-50 p-3 text-xs text-red-700">
+          <pre className="mb-5 overflow-auto rounded-lg border border-stone-200 bg-stone-50 p-3 text-xs text-red-700">
             {message}
           </pre>
 
@@ -442,21 +442,21 @@ function LightTrafficChart({
 
   if (!data.length && !loading) {
     return (
-      <div className="flex min-h-72 items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50 text-sm text-slate-500">
+      <div className="flex min-h-72 items-center justify-center rounded-xl border border-dashed border-stone-200 bg-stone-50 text-sm text-stone-500">
         Waiting for traffic samples.
       </div>
     );
   }
 
   return (
-    <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-4 py-3">
-        <div className="flex items-center gap-5 text-xs text-slate-500">
-          <span><strong className="text-slate-900">{formatCompact(latestActual)}</strong> actual RPS</span>
+    <div className="relative overflow-hidden rounded-xl border border-stone-200 bg-white">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-100 px-4 py-3">
+        <div className="flex items-center gap-5 text-xs text-stone-500">
+          <span><strong className="text-stone-900">{formatCompact(latestActual)}</strong> actual RPS</span>
           <span><strong className="text-cyan-700">{formatCompact(latestPredicted)}</strong> predicted RPS</span>
         </div>
-        <div className="flex items-center gap-4 text-xs text-slate-500">
-          <span className="flex items-center gap-1.5"><span className="h-0.5 w-4 bg-indigo-600" />Actual</span>
+        <div className="flex items-center gap-4 text-xs text-stone-500">
+          <span className="flex items-center gap-1.5"><span className="h-0.5 w-4 bg-emerald-600" />Actual</span>
           <span className="flex items-center gap-1.5"><span className="w-4 border-t-2 border-dashed border-cyan-500" />Forecast</span>
           <span className="flex items-center gap-1.5"><span className="w-4 border-t border-dashed border-amber-500" />Estimated capacity</span>
         </div>
@@ -470,8 +470,8 @@ function LightTrafficChart({
       >
         <defs>
           <linearGradient id="traffic-area" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#6366f1" stopOpacity="0.18" />
-            <stop offset="1" stopColor="#6366f1" stopOpacity="0" />
+            <stop offset="0" stopColor="#397252" stopOpacity="0.18" />
+            <stop offset="1" stopColor="#397252" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -479,8 +479,8 @@ function LightTrafficChart({
           const tickY = inset.top + (1 - tick) * chartHeight;
           return (
             <g key={tick}>
-              <line x1={inset.left} x2={width - inset.right} y1={tickY} y2={tickY} stroke="#e8edf5" />
-              <text x={inset.left - 12} y={tickY + 4} textAnchor="end" fontSize="11" fill="#7b879d">
+              <line x1={inset.left} x2={width - inset.right} y1={tickY} y2={tickY} stroke="#e5e7dd" />
+              <text x={inset.left - 12} y={tickY + 4} textAnchor="end" fontSize="11" fill="#7a8376">
                 {formatCompact(maximum * tick)}
               </text>
             </g>
@@ -502,7 +502,7 @@ function LightTrafficChart({
           key={`actual-${data.length}`}
           d={pathFor("actual")}
           fill="none"
-          stroke="#4f46e5"
+          stroke="#397252"
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -514,7 +514,7 @@ function LightTrafficChart({
           key={`predicted-${data.length}`}
           d={pathFor("predicted")}
           fill="none"
-          stroke="#0891b2"
+          stroke="#557f93"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -526,10 +526,10 @@ function LightTrafficChart({
 
         {data.length > 0 && (
           <>
-            <text x={inset.left} y={height - 10} fontSize="11" fill="#7b879d">
+            <text x={inset.left} y={height - 10} fontSize="11" fill="#7a8376">
               {formatTimestamp(data[0].timestamp)}
             </text>
-            <text x={width - inset.right} y={height - 10} textAnchor="end" fontSize="11" fill="#7b879d">
+            <text x={width - inset.right} y={height - 10} textAnchor="end" fontSize="11" fill="#7a8376">
               {formatTimestamp(data[data.length - 1].timestamp)}
             </text>
           </>
@@ -538,8 +538,8 @@ function LightTrafficChart({
 
       {loading && (
         <div className="absolute inset-0 grid place-items-center bg-white/70 backdrop-blur-sm">
-          <span className="flex items-center gap-2 text-sm font-medium text-slate-600">
-            <RefreshCw className="size-4 animate-spin text-indigo-600" />
+          <span className="flex items-center gap-2 text-sm font-medium text-stone-600">
+            <RefreshCw className="size-4 animate-spin text-emerald-600" />
             Updating forecast
           </span>
         </div>
@@ -590,7 +590,7 @@ function DashboardAuthentication({
         transition={{ duration: 0.35, ease: "easeOut" }}
         className="relative w-full max-w-md"
       >
-        <Card className="border-slate-200 bg-white/95 shadow-2xl shadow-slate-300/40 backdrop-blur-xl">
+        <Card className="border-stone-200 bg-white/95 shadow-2xl shadow-slate-300/40 backdrop-blur-xl">
           <CardHeader>
             <div className="mb-4 flex items-center justify-between">
               <FluxScaleMark className="size-12 shadow-md" />
@@ -631,14 +631,14 @@ function DashboardAuthentication({
                     spellCheck={false}
                     disabled={submitting}
                     placeholder="Paste FLUXSCALE_READ_TOKEN"
-                    className="h-11 w-full rounded-xl border border-slate-200 bg-white px-3 pr-11 text-sm outline-none transition placeholder:text-muted-foreground/60 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 disabled:opacity-60"
+                    className="h-11 w-full rounded-xl border border-stone-200 bg-white px-3 pr-11 text-sm outline-none transition placeholder:text-muted-foreground/60 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 disabled:opacity-60"
                   />
 
                   <button
                     type="button"
                     onClick={() => setVisible((current) => !current)}
                     aria-label={visible ? "Hide read token" : "Show read token"}
-                    className="absolute right-1.5 top-1.5 flex size-8 items-center justify-center rounded-lg text-muted-foreground transition hover:bg-slate-100 hover:text-foreground"
+                    className="absolute right-1.5 top-1.5 flex size-8 items-center justify-center rounded-lg text-muted-foreground transition hover:bg-stone-100 hover:text-foreground"
                   >
                     {visible ? (
                       <EyeOff className="size-4" />
@@ -919,7 +919,7 @@ export default function App() {
 
   return (
     <TooltipProvider>
-      <div className="fluxscale-console min-h-screen bg-[#f4f6f9] text-slate-950">
+      <div className="fluxscale-console min-h-screen">
         <aside className="console-rail">
           <div className="console-rail__brand">
             <FluxScaleMark className="shadow-sm" />
@@ -945,6 +945,7 @@ export default function App() {
                   type="button"
                   className={cn("console-rail__nav-item", active && "is-active")}
                   aria-current={active ? "page" : undefined}
+                  aria-label={label}
                   onClick={() => {
                     setActiveRail(view);
                     if (view === "overview") {
@@ -987,7 +988,7 @@ export default function App() {
             <div className="min-w-0">
               <p className="console-commandbar__context">Workspace / {healthQuery.data?.workspace ?? 'Self-hosted'}</p>
               <div className="flex items-center gap-2">
-                <h1>Autonomous capacity</h1>
+                <h1>Deployment console</h1>
                 <span className="console-release">{healthQuery.data?.version ?? "Connecting"}</span>
               </div>
             </div>
@@ -1011,7 +1012,7 @@ export default function App() {
               <div className="console-live-status">
                 <span className={cn("console-live-dot", overviewQuery.isError && "is-warning")} />
                 <span>{overviewQuery.isError ? "Last known state" : "Live"}</span>
-                <span className="hidden text-slate-400 sm:inline">· {formatTimestamp(overviewQuery.data?.generated_at ?? new Date().toISOString())}</span>
+                <span className="hidden text-stone-400 sm:inline">· {formatTimestamp(overviewQuery.data?.generated_at ?? new Date().toISOString())}</span>
               </div>
 
               {connectedConsole && <a href="/connected" className="console-refresh">Your projects</a>}
@@ -1050,8 +1051,9 @@ export default function App() {
             <section id="console-overview" className="scroll-mt-24">
               <div className="console-section-heading">
                 <div>
-                  <p className="console-eyebrow">Live control surface</p>
-                  <h2>Infrastructure pulse</h2>
+                  <p className="console-eyebrow">Observe. Anticipate. Adjust.</p>
+                  <h2>Capacity, in motion<span className="console-heading-dot">.</span></h2>
+                  <p className="console-heading-description">A clear view of demand and the infrastructure that meets it.</p>
                 </div>
                 <div className="console-section-heading__meta">
                   <ShieldCheck className="size-4 text-emerald-600" />
@@ -1065,7 +1067,7 @@ export default function App() {
                   value={`${formatCompact(summary.total_requests_per_second)} RPS`}
                   detail={`${summary.services} services reporting`}
                   icon={Gauge}
-                  accentClass="bg-indigo-500"
+                  accentClass="bg-emerald-500"
                   index={0}
                 />
                 <KpiCard
@@ -1089,7 +1091,7 @@ export default function App() {
                   value={formatNumber(summary.healthy_backends)}
                   detail={`${summary.scaling_services} services scaling`}
                   icon={Server}
-                  accentClass="bg-violet-500"
+                  accentClass="bg-emerald-500"
                   index={3}
                 />
               </div>
@@ -1121,7 +1123,7 @@ export default function App() {
                 >
                   <div className="console-decision__top">
                     <div>
-                      <p className="console-eyebrow text-indigo-200">Controller decision</p>
+                      <p className="console-eyebrow text-emerald-200">Controller decision</p>
                       <h3>{selectedServiceData?.service ?? "Awaiting a service"}</h3>
                     </div>
                     {selectedServiceData && <ActionBadge action={selectedServiceData.action} />}
@@ -1254,16 +1256,16 @@ export default function App() {
                           </TableHeader>
                           <TableBody>
                             {instancesQuery.isPending && selectedService ? (
-                              <TableRow><TableCell colSpan={8} className="h-28 text-center text-slate-500">Loading fleet telemetry…</TableCell></TableRow>
+                              <TableRow><TableCell colSpan={8} className="h-28 text-center text-stone-500">Loading fleet telemetry…</TableCell></TableRow>
                             ) : fleetInstances.length === 0 ? (
-                              <TableRow><TableCell colSpan={8} className="h-28 text-center text-slate-500">{selectedService ? "No process identity has reported yet." : "Select a service to inspect its fleet."}</TableCell></TableRow>
+                              <TableRow><TableCell colSpan={8} className="h-28 text-center text-stone-500">{selectedService ? "No process identity has reported yet." : "Select a service to inspect its fleet."}</TableCell></TableRow>
                             ) : fleetInstances.map((instance, index) => (
                               <motion.tr
                                 key={instance.instance_id}
                                 initial={{ opacity: 0, y: 5 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: Math.min(index, 8) * 0.035 }}
-                                className={cn("border-b transition-colors hover:bg-slate-50", !instance.fresh && "bg-amber-50/50")}
+                                className={cn("border-b transition-colors hover:bg-stone-50", !instance.fresh && "bg-amber-50/50")}
                               >
                                 <TableCell className="max-w-64 font-mono text-xs"><span className="block truncate" title={instance.instance_id}>{instance.instance_id}</span></TableCell>
                                 <TableCell><span className={cn("console-health-pill", !instance.fresh && "is-warning")}><span />{instance.fresh ? "Online" : "Stale"}</span></TableCell>
@@ -1272,7 +1274,7 @@ export default function App() {
                                 <TableCell>{formatPercent(instance.last_sample.cpu_percent)}</TableCell>
                                 <TableCell>{formatPercent(instance.last_sample.memory_percent)}</TableCell>
                                 <TableCell>{formatNumber(instance.last_sample.active_requests)}</TableCell>
-                                <TableCell className="text-right text-xs text-slate-500">{formatSampleAge(instance.last_sample.timestamp)}</TableCell>
+                                <TableCell className="text-right text-xs text-stone-500">{formatSampleAge(instance.last_sample.timestamp)}</TableCell>
                               </motion.tr>
                             ))}
                           </TableBody>
@@ -1347,11 +1349,11 @@ export default function App() {
                             <TableHeader><TableRow><TableHead>Time</TableHead><TableHead>Request</TableHead><TableHead>Route</TableHead><TableHead>Class</TableHead><TableHead>Latency</TableHead><TableHead className="text-right">Outcome</TableHead></TableRow></TableHeader>
                             <TableBody>
                               {visibleAuditEvents.slice(0, 10).map((event, index) => (
-                                <motion.tr key={`${event.request_id}-${event.timestamp}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.025 }} className="border-b hover:bg-slate-50">
-                                  <TableCell className="text-xs text-slate-500">{formatTimestamp(event.timestamp)}</TableCell>
+                                <motion.tr key={`${event.request_id}-${event.timestamp}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.025 }} className="border-b hover:bg-stone-50">
+                                  <TableCell className="text-xs text-stone-500">{formatTimestamp(event.timestamp)}</TableCell>
                                   <TableCell className="max-w-52 font-mono text-xs"><span className="block truncate" title={event.request_id}>{event.request_id}</span></TableCell>
-                                  <TableCell className="max-w-80"><span className="mr-2 rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[11px]">{event.method}</span><span className="font-mono text-xs">{event.path}</span></TableCell>
-                                  <TableCell className="capitalize text-slate-600">{event.request_class}</TableCell>
+                                  <TableCell className="max-w-80"><span className="mr-2 rounded bg-stone-100 px-1.5 py-0.5 font-mono text-[11px]">{event.method}</span><span className="font-mono text-xs">{event.path}</span></TableCell>
+                                  <TableCell className="capitalize text-stone-600">{event.request_class}</TableCell>
                                   <TableCell className="font-mono text-xs">{event.latency_ms} ms</TableCell>
                                   <TableCell className="text-right"><AuditOutcome event={event} /></TableCell>
                                 </motion.tr>

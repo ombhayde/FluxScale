@@ -20,7 +20,7 @@ try {
     $files += Get-ChildItem -LiteralPath (Join-Path $project 'scripts') -File |
         Where-Object { $_.Name -ne 'simulate_spike.sh' -and ($_.Name -notmatch 'phase|_v\d' -or $_.Name -in @('verify_phase8a_v1.ps1', 'verify_phase7i_v1.ps1', 'verify_phase7d_v2.ps1')) } |
         ForEach-Object { 'scripts/' + $_.Name }
-    $files += @('docs/OPERATIONS.md', 'docs/VERIFICATION.md', 'docs/INTEGRATION.md', 'docs/RELEASE.md', 'docs/LINKEDIN.md', 'docs/CONNECTED_AUTOSCALING.md', 'docs/CONNECTED_DEPLOYMENT.md', 'docs/DEMO.md', 'docs/assets/demo-analysis.png')
+    $files += @('docs/OPERATIONS.md', 'docs/VERIFICATION.md', 'docs/INTEGRATION.md', 'docs/CONNECTED_DEPLOYMENT.md', 'docs/BENCHMARK.md', 'docs/assets/demo-analysis.png')
     $files += @('docs/assets/demo-result.json', 'docs/assets/demo-timeline.json', 'docs/assets/demo-scale-out.png', 'docs/assets/demo-fleet.png', 'docs/assets/demo-workloads.png')
     foreach ($relative in ($files | Sort-Object -Unique)) {
         $destination = Join-Path $root $relative

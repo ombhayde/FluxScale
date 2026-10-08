@@ -1,4 +1,4 @@
-# Recorded mixed-workload autoscaling demo
+# Measured mixed-workload benchmark
 
 This recording uses two actual accounts and two isolated local Docker deployments.
 Alice sees only Store API, which receives the main workload. Bob sees only Billing
@@ -21,22 +21,22 @@ requests across the ladder and fixed-volume phases total 100,000.
 
 | Workload phase | Target RPS | Sent | Successful | Failed | Unsent demand | Successful RPS | Client P95 ms |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Mixed workload warm-up | — | 1,000 | 1,000 | 0 | 0 | 218.1 | 80.12 |
-| CPU pressure with real reads, writes and joins | — | 10,000 | 10,000 | 0 | 0 | 232.5 | 730.74 |
-| Mixed offered-rate target: 50 RPS | 50 | 250 | 250 | 0 | 0 | 49.4 | 32.40 |
-| Mixed offered-rate target: 300 RPS | 300 | 1,500 | 1,500 | 0 | 0 | 292.4 | 51.68 |
-| Mixed offered-rate target: 1,000 RPS | 1000 | 1,622 | 1,622 | 0 | 3378 | 300.6 | 941.29 |
-| Mixed offered-rate target: 10,000 RPS | 10000 | 1,710 | 1,710 | 0 | 48290 | 305.5 | 875.23 |
-| Mixed offered-rate target: 1,00,000 RPS | 100000 | 1,739 | 1,739 | 0 | 498261 | 316.4 | 879.57 |
-| Mixed offered-rate target: 50 RPS | 50 | 250 | 250 | 0 | 0 | 49.3 | 29.70 |
-| Mixed traffic burst: remaining client requests | — | 81,929 | 81,929 | 0 | 0 | 340.5 | 495.58 |
+| Mixed workload warm-up | — | 1,000 | 1,000 | 0 | 0 | 159.9 | 99.82 |
+| CPU pressure with real reads, writes and joins | — | 10,000 | 10,000 | 0 | 0 | 213.0 | 871.66 |
+| Mixed offered-rate target: 50 RPS | 50 | 250 | 250 | 0 | 0 | 49.5 | 25.41 |
+| Mixed offered-rate target: 300 RPS | 300 | 1,500 | 1,500 | 0 | 0 | 296.2 | 181.26 |
+| Mixed offered-rate target: 1,000 RPS | 1000 | 1,945 | 1,945 | 0 | 3055 | 367.7 | 700.36 |
+| Mixed offered-rate target: 10,000 RPS | 10000 | 1,938 | 1,938 | 0 | 48062 | 359.6 | 722.81 |
+| Mixed offered-rate target: 1,00,000 RPS | 100000 | 1,920 | 1,920 | 0 | 498080 | 349.7 | 800.33 |
+| Mixed offered-rate target: 50 RPS | 50 | 250 | 250 | 0 | 0 | 49.6 | 29.19 |
+| Mixed traffic burst: remaining client requests | — | 81,197 | 81,197 | 0 | 0 | 322.4 | 504.06 |
 
 These are controlled benchmark conditions, not production workload measurements.
 RPS includes each phase's entire measured duration and outstanding request completion.
 Recording and agent reporting run alongside the workload. Latency percentiles cover successful requests only; failed requests are
 reported separately. The SDK chart uses its own reporting windows, so its P95 and
 RPS should not be confused with the generator's phase-wide figures. Bob's
-358 baseline requests are outside Alice's 100,000-request count.
+377 baseline requests are outside Alice's 100,000-request count.
 
 ## Real workload mix
 
@@ -49,9 +49,9 @@ The database contains 2,000 customers, 12,000 orders and 60,000 order items.
 
 | Workload | Sent | Successful | Failed |
 | --- | ---: | ---: | ---: |
-| read | 35,016 | 35,016 | 0 |
+| read | 35,012 | 35,012 | 0 |
 | write | 25,001 | 25,001 | 0 |
-| join | 19,992 | 19,992 | 0 |
+| join | 19,996 | 19,996 | 0 |
 | cpu | 19,991 | 19,991 | 0 |
 
 Independent database inspection found **25,001
@@ -131,11 +131,3 @@ announcement with `node scripts/summarize_demo.mjs`.
 3. Alice's account: request counter, workload phases and Store API analysis.
 4. Actual scale-out, workload analysis and a ramp of offered-rate targets.
 5. Mixed traffic burst, idle recovery and actual scale-in to one healthy replica.
-
-Attach the MP4 directly to LinkedIn and link this repository. Keep the detailed
-analysis accessible beside the integration guide; do not advertise the workload
-as cloud production certification. Two earlier rehearsals recorded one and two
-HTTP failures respectively and exposed burst scaling churn. The proxy now has
-tested read failover, and scale-in stabilization considers actual recent demand.
-The final mixed run above has its own measured outcome. Sustained production
-reliability still requires representative deployment testing.

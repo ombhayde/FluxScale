@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-10-08T19:50:17.098Z",
+  "run_at": "2026-10-08T20:25:36.141Z",
   "scope": "Two isolated local Docker deployments with distinct user accounts. Primary workload counts application requests only; baseline traffic is separate.",
   "total_attempted": 100000,
   "total_successful": 100000,
@@ -13,16 +13,16 @@
       "concurrency": 8,
       "configured_delay_ms": null,
       "cpu_ms": 5,
-      "elapsed_seconds": 4.584557000000001,
-      "successful_rps": 218.12358315100013,
-      "p50_ms": 28.489699999998265,
-      "p95_ms": 80.11530000000494,
-      "p99_ms": 128.1284999999989,
+      "elapsed_seconds": 6.2525002999999995,
+      "successful_rps": 159.93601791590478,
+      "p50_ms": 41.69080000000395,
+      "p95_ms": 99.82360000000335,
+      "p99_ms": 168.80359999999928,
       "statuses": {
         "200": 1000
       },
       "instances": {
-        "fluxscale-demo-a71cf313-0-store-api-1": 1000
+        "fluxscale-demo-f63da854-0-store-api-1": 1000
       },
       "errors": [],
       "workloads": {
@@ -30,25 +30,25 @@
           "attempted": 350,
           "successful": 350,
           "failed": 0,
-          "p95_ms": 68.35759999999937
+          "p95_ms": 103.98070000000007
         },
         "write": {
           "attempted": 250,
           "successful": 250,
           "failed": 0,
-          "p95_ms": 67.34839999999895
+          "p95_ms": 86.33430000000226
         },
         "join": {
           "attempted": 200,
           "successful": 200,
           "failed": 0,
-          "p95_ms": 111.58870000000024
+          "p95_ms": 120.65640000000712
         },
         "cpu": {
           "attempted": 200,
           "successful": 200,
           "failed": 0,
-          "p95_ms": 52.92320000000109
+          "p95_ms": 70.26440000000002
         }
       }
     },
@@ -60,21 +60,21 @@
       "concurrency": 64,
       "configured_delay_ms": null,
       "cpu_ms": 40,
-      "elapsed_seconds": 43.007791,
-      "successful_rps": 232.51601087812207,
-      "p50_ms": 203.95150000000285,
-      "p95_ms": 730.7421000000031,
-      "p99_ms": 1106.6347000000023,
+      "elapsed_seconds": 46.9572347,
+      "successful_rps": 212.95972950468482,
+      "p50_ms": 211.5630999999994,
+      "p95_ms": 871.6616999999969,
+      "p99_ms": 1274.3372999999992,
       "statuses": {
         "200": 10000
       },
       "instances": {
-        "fluxscale-demo-a71cf313-0-store-api-1": 2006,
-        "fluxscale-demo-a71cf313-0-store-api-3": 1903,
-        "fluxscale-demo-a71cf313-0-store-api-2": 1904,
-        "fluxscale-demo-a71cf313-0-store-api-4": 1395,
-        "fluxscale-demo-a71cf313-0-store-api-5": 1396,
-        "fluxscale-demo-a71cf313-0-store-api-6": 1396
+        "fluxscale-demo-f63da854-0-store-api-1": 2350,
+        "fluxscale-demo-f63da854-0-store-api-2": 2054,
+        "fluxscale-demo-f63da854-0-store-api-4": 1434,
+        "fluxscale-demo-f63da854-0-store-api-3": 1435,
+        "fluxscale-demo-f63da854-0-store-api-5": 1410,
+        "fluxscale-demo-f63da854-0-store-api-6": 1317
       },
       "errors": [],
       "workloads": {
@@ -82,25 +82,25 @@
           "attempted": 3500,
           "successful": 3500,
           "failed": 0,
-          "p95_ms": 526.5472999999911
+          "p95_ms": 800.9634000000005
         },
         "write": {
           "attempted": 2500,
           "successful": 2500,
           "failed": 0,
-          "p95_ms": 728.8686999999991
+          "p95_ms": 912.3319000000047
         },
         "join": {
           "attempted": 2000,
           "successful": 2000,
           "failed": 0,
-          "p95_ms": 995.450499999999
+          "p95_ms": 1006.4343000000008
         },
         "cpu": {
           "attempted": 2000,
           "successful": 2000,
           "failed": 0,
-          "p95_ms": 185.7001999999993
+          "p95_ms": 186.401300000005
         }
       }
     },
@@ -112,21 +112,21 @@
       "concurrency": 128,
       "configured_delay_ms": null,
       "cpu_ms": 5,
-      "elapsed_seconds": 5.056812999999995,
-      "successful_rps": 49.438252907513146,
-      "p50_ms": 22.35099999999511,
-      "p95_ms": 32.3975000000064,
-      "p99_ms": 50.760599999994156,
+      "elapsed_seconds": 5.053744000000006,
+      "successful_rps": 49.46827540136574,
+      "p50_ms": 20.792799999995623,
+      "p95_ms": 25.41040000000794,
+      "p99_ms": 54.419999999998254,
       "statuses": {
         "200": 250
       },
       "instances": {
-        "fluxscale-demo-a71cf313-0-store-api-2": 42,
-        "fluxscale-demo-a71cf313-0-store-api-4": 42,
-        "fluxscale-demo-a71cf313-0-store-api-3": 42,
-        "fluxscale-demo-a71cf313-0-store-api-6": 41,
-        "fluxscale-demo-a71cf313-0-store-api-1": 42,
-        "fluxscale-demo-a71cf313-0-store-api-5": 41
+        "fluxscale-demo-f63da854-0-store-api-3": 42,
+        "fluxscale-demo-f63da854-0-store-api-4": 42,
+        "fluxscale-demo-f63da854-0-store-api-1": 42,
+        "fluxscale-demo-f63da854-0-store-api-6": 41,
+        "fluxscale-demo-f63da854-0-store-api-2": 42,
+        "fluxscale-demo-f63da854-0-store-api-5": 41
       },
       "errors": [],
       "workloads": {
@@ -134,25 +134,25 @@
           "attempted": 91,
           "successful": 91,
           "failed": 0,
-          "p95_ms": 32.70720000000438
+          "p95_ms": 21.31029999999737
         },
         "write": {
           "attempted": 63,
           "successful": 63,
           "failed": 0,
-          "p95_ms": 29.588900000002468
+          "p95_ms": 29.694700000007288
         },
         "join": {
           "attempted": 48,
           "successful": 48,
           "failed": 0,
-          "p95_ms": 32.43829999999434
+          "p95_ms": 28.183399999994435
         },
         "cpu": {
           "attempted": 48,
           "successful": 48,
           "failed": 0,
-          "p95_ms": 34.90890000000945
+          "p95_ms": 24.633499999996275
         }
       },
       "target_rps": 50,
@@ -168,21 +168,21 @@
       "concurrency": 128,
       "configured_delay_ms": null,
       "cpu_ms": 5,
-      "elapsed_seconds": 5.1300916,
-      "successful_rps": 292.39243993226165,
-      "p50_ms": 24.125500000009197,
-      "p95_ms": 51.68110000000161,
-      "p99_ms": 104.58699999999953,
+      "elapsed_seconds": 5.064224700000006,
+      "successful_rps": 296.1953880126998,
+      "p50_ms": 26.167600000000675,
+      "p95_ms": 181.2563000000082,
+      "p99_ms": 329.5323999999964,
       "statuses": {
         "200": 1500
       },
       "instances": {
-        "fluxscale-demo-a71cf313-0-store-api-2": 250,
-        "fluxscale-demo-a71cf313-0-store-api-3": 250,
-        "fluxscale-demo-a71cf313-0-store-api-6": 250,
-        "fluxscale-demo-a71cf313-0-store-api-1": 250,
-        "fluxscale-demo-a71cf313-0-store-api-5": 250,
-        "fluxscale-demo-a71cf313-0-store-api-4": 250
+        "fluxscale-demo-f63da854-0-store-api-5": 250,
+        "fluxscale-demo-f63da854-0-store-api-6": 250,
+        "fluxscale-demo-f63da854-0-store-api-3": 250,
+        "fluxscale-demo-f63da854-0-store-api-2": 250,
+        "fluxscale-demo-f63da854-0-store-api-1": 250,
+        "fluxscale-demo-f63da854-0-store-api-4": 250
       },
       "errors": [],
       "workloads": {
@@ -190,25 +190,25 @@
           "attempted": 525,
           "successful": 525,
           "failed": 0,
-          "p95_ms": 42.259799999999814
+          "p95_ms": 106.30359999999928
         },
         "write": {
           "attempted": 375,
           "successful": 375,
           "failed": 0,
-          "p95_ms": 51.87029999999504
+          "p95_ms": 208.26989999999932
         },
         "join": {
           "attempted": 300,
           "successful": 300,
           "failed": 0,
-          "p95_ms": 101.36619999998948
+          "p95_ms": 316.4407000000065
         },
         "cpu": {
           "attempted": 300,
           "successful": 300,
           "failed": 0,
-          "p95_ms": 40.79080000000249
+          "p95_ms": 37.91070000000764
         }
       },
       "target_rps": 300,
@@ -218,170 +218,170 @@
     },
     {
       "name": "Mixed offered-rate target: 1,000 RPS",
-      "attempted": 1622,
-      "successful": 1622,
+      "attempted": 1945,
+      "successful": 1945,
       "failed": 0,
       "concurrency": 128,
       "configured_delay_ms": null,
       "cpu_ms": 5,
-      "elapsed_seconds": 5.395016200000013,
-      "successful_rps": 300.6478460620741,
-      "p50_ms": 338.1634000000049,
-      "p95_ms": 941.2897999999986,
-      "p99_ms": 1268.183899999989,
+      "elapsed_seconds": 5.289197700000004,
+      "successful_rps": 367.73062954330453,
+      "p50_ms": 280.6038000000117,
+      "p95_ms": 700.3608999999997,
+      "p99_ms": 947.6774999999907,
       "statuses": {
-        "200": 1622
+        "200": 1945
       },
       "instances": {
-        "fluxscale-demo-a71cf313-0-store-api-6": 271,
-        "fluxscale-demo-a71cf313-0-store-api-4": 270,
-        "fluxscale-demo-a71cf313-0-store-api-2": 270,
-        "fluxscale-demo-a71cf313-0-store-api-5": 271,
-        "fluxscale-demo-a71cf313-0-store-api-1": 270,
-        "fluxscale-demo-a71cf313-0-store-api-3": 270
+        "fluxscale-demo-f63da854-0-store-api-3": 324,
+        "fluxscale-demo-f63da854-0-store-api-5": 324,
+        "fluxscale-demo-f63da854-0-store-api-1": 324,
+        "fluxscale-demo-f63da854-0-store-api-6": 325,
+        "fluxscale-demo-f63da854-0-store-api-2": 324,
+        "fluxscale-demo-f63da854-0-store-api-4": 324
       },
       "errors": [],
       "workloads": {
         "read": {
-          "attempted": 569,
-          "successful": 569,
+          "attempted": 684,
+          "successful": 684,
           "failed": 0,
-          "p95_ms": 777.6396000000095
+          "p95_ms": 587.5893000000069
         },
         "write": {
-          "attempted": 405,
-          "successful": 405,
+          "attempted": 485,
+          "successful": 485,
           "failed": 0,
-          "p95_ms": 1064.508999999991
+          "p95_ms": 777.6297999999952
         },
         "join": {
-          "attempted": 324,
-          "successful": 324,
+          "attempted": 388,
+          "successful": 388,
           "failed": 0,
-          "p95_ms": 1087.778999999995
+          "p95_ms": 875.0662000000011
         },
         "cpu": {
-          "attempted": 324,
-          "successful": 324,
+          "attempted": 388,
+          "successful": 388,
           "failed": 0,
-          "p95_ms": 84.53720000000612
+          "p95_ms": 48.18939999998838
         }
       },
       "target_rps": 1000,
       "scheduled_requests": 5000,
-      "dropped_before_send": 3378,
+      "dropped_before_send": 3055,
       "scheduled_seconds": 5
     },
     {
       "name": "Mixed offered-rate target: 10,000 RPS",
-      "attempted": 1710,
-      "successful": 1710,
+      "attempted": 1938,
+      "successful": 1938,
       "failed": 0,
       "concurrency": 128,
       "configured_delay_ms": null,
       "cpu_ms": 5,
-      "elapsed_seconds": 5.598072,
-      "successful_rps": 305.46230916644157,
-      "p50_ms": 346.088499999998,
-      "p95_ms": 875.2289000000019,
-      "p99_ms": 1144.4784000000072,
+      "elapsed_seconds": 5.388992599999998,
+      "successful_rps": 359.62194492529096,
+      "p50_ms": 293.9786000000022,
+      "p95_ms": 722.8104000000021,
+      "p99_ms": 871.0547999999981,
       "statuses": {
-        "200": 1710
+        "200": 1938
       },
       "instances": {
-        "fluxscale-demo-a71cf313-0-store-api-1": 285,
-        "fluxscale-demo-a71cf313-0-store-api-3": 285,
-        "fluxscale-demo-a71cf313-0-store-api-2": 285,
-        "fluxscale-demo-a71cf313-0-store-api-4": 285,
-        "fluxscale-demo-a71cf313-0-store-api-5": 285,
-        "fluxscale-demo-a71cf313-0-store-api-6": 285
+        "fluxscale-demo-f63da854-0-store-api-5": 323,
+        "fluxscale-demo-f63da854-0-store-api-2": 323,
+        "fluxscale-demo-f63da854-0-store-api-1": 323,
+        "fluxscale-demo-f63da854-0-store-api-3": 323,
+        "fluxscale-demo-f63da854-0-store-api-4": 323,
+        "fluxscale-demo-f63da854-0-store-api-6": 323
       },
       "errors": [],
       "workloads": {
         "read": {
-          "attempted": 602,
-          "successful": 602,
+          "attempted": 679,
+          "successful": 679,
           "failed": 0,
-          "p95_ms": 678.5221999999922
+          "p95_ms": 556.4367999999959
         },
         "write": {
-          "attempted": 428,
-          "successful": 428,
+          "attempted": 485,
+          "successful": 485,
           "failed": 0,
-          "p95_ms": 951.47570000001
+          "p95_ms": 790.3337999999931
         },
         "join": {
-          "attempted": 340,
-          "successful": 340,
+          "attempted": 388,
+          "successful": 388,
           "failed": 0,
-          "p95_ms": 1039.6169999999984
+          "p95_ms": 830.4040999999997
         },
         "cpu": {
-          "attempted": 340,
-          "successful": 340,
+          "attempted": 386,
+          "successful": 386,
           "failed": 0,
-          "p95_ms": 44.315400000006775
+          "p95_ms": 49.49980000000505
         }
       },
       "target_rps": 10000,
       "scheduled_requests": 50000,
-      "dropped_before_send": 48290,
+      "dropped_before_send": 48062,
       "scheduled_seconds": 5
     },
     {
       "name": "Mixed offered-rate target: 1,00,000 RPS",
-      "attempted": 1739,
-      "successful": 1739,
+      "attempted": 1920,
+      "successful": 1920,
       "failed": 0,
       "concurrency": 128,
       "configured_delay_ms": null,
       "cpu_ms": 5,
-      "elapsed_seconds": 5.496287199999991,
-      "successful_rps": 316.39540233632675,
-      "p50_ms": 311.2460999999894,
-      "p95_ms": 879.569399999993,
-      "p99_ms": 1072.9816999999894,
+      "elapsed_seconds": 5.490102299999998,
+      "successful_rps": 349.7202593110151,
+      "p50_ms": 270.54159999999683,
+      "p95_ms": 800.3291000000027,
+      "p99_ms": 1046.0755000000063,
       "statuses": {
-        "200": 1739
+        "200": 1920
       },
       "instances": {
-        "fluxscale-demo-a71cf313-0-store-api-5": 289,
-        "fluxscale-demo-a71cf313-0-store-api-1": 290,
-        "fluxscale-demo-a71cf313-0-store-api-2": 290,
-        "fluxscale-demo-a71cf313-0-store-api-3": 290,
-        "fluxscale-demo-a71cf313-0-store-api-4": 290,
-        "fluxscale-demo-a71cf313-0-store-api-6": 290
+        "fluxscale-demo-f63da854-0-store-api-2": 320,
+        "fluxscale-demo-f63da854-0-store-api-4": 320,
+        "fluxscale-demo-f63da854-0-store-api-3": 320,
+        "fluxscale-demo-f63da854-0-store-api-5": 320,
+        "fluxscale-demo-f63da854-0-store-api-1": 320,
+        "fluxscale-demo-f63da854-0-store-api-6": 320
       },
       "errors": [],
       "workloads": {
         "read": {
-          "attempted": 609,
-          "successful": 609,
+          "attempted": 672,
+          "successful": 672,
           "failed": 0,
-          "p95_ms": 727.6125000000029
+          "p95_ms": 694.1882999999943
         },
         "write": {
-          "attempted": 435,
-          "successful": 435,
+          "attempted": 480,
+          "successful": 480,
           "failed": 0,
-          "p95_ms": 996.6009000000049
+          "p95_ms": 887.829899999997
         },
         "join": {
-          "attempted": 348,
-          "successful": 348,
+          "attempted": 384,
+          "successful": 384,
           "failed": 0,
-          "p95_ms": 949.8313999999955
+          "p95_ms": 973.8562999999995
         },
         "cpu": {
-          "attempted": 347,
-          "successful": 347,
+          "attempted": 384,
+          "successful": 384,
           "failed": 0,
-          "p95_ms": 49.67630000000645
+          "p95_ms": 49.94090000000142
         }
       },
       "target_rps": 100000,
       "scheduled_requests": 500000,
-      "dropped_before_send": 498261,
+      "dropped_before_send": 498080,
       "scheduled_seconds": 5
     },
     {
@@ -392,21 +392,21 @@
       "concurrency": 128,
       "configured_delay_ms": null,
       "cpu_ms": 5,
-      "elapsed_seconds": 5.068583700000003,
-      "successful_rps": 49.32344315434701,
-      "p50_ms": 22.7786000000051,
-      "p95_ms": 29.702000000004773,
-      "p99_ms": 44.00890000000072,
+      "elapsed_seconds": 5.0358171,
+      "successful_rps": 49.64437648063112,
+      "p50_ms": 22.070599999991828,
+      "p95_ms": 29.191600000005565,
+      "p99_ms": 38.61449999999604,
       "statuses": {
         "200": 250
       },
       "instances": {
-        "fluxscale-demo-a71cf313-0-store-api-5": 42,
-        "fluxscale-demo-a71cf313-0-store-api-4": 42,
-        "fluxscale-demo-a71cf313-0-store-api-2": 42,
-        "fluxscale-demo-a71cf313-0-store-api-6": 41,
-        "fluxscale-demo-a71cf313-0-store-api-1": 41,
-        "fluxscale-demo-a71cf313-0-store-api-3": 42
+        "fluxscale-demo-f63da854-0-store-api-4": 42,
+        "fluxscale-demo-f63da854-0-store-api-5": 42,
+        "fluxscale-demo-f63da854-0-store-api-2": 42,
+        "fluxscale-demo-f63da854-0-store-api-3": 42,
+        "fluxscale-demo-f63da854-0-store-api-1": 41,
+        "fluxscale-demo-f63da854-0-store-api-6": 41
       },
       "errors": [],
       "workloads": {
@@ -414,25 +414,25 @@
           "attempted": 91,
           "successful": 91,
           "failed": 0,
-          "p95_ms": 25.504099999991013
+          "p95_ms": 23.00119999999879
         },
         "write": {
           "attempted": 63,
           "successful": 63,
           "failed": 0,
-          "p95_ms": 35.06470000000263
+          "p95_ms": 27.29529999999795
         },
         "join": {
           "attempted": 48,
           "successful": 48,
           "failed": 0,
-          "p95_ms": 33.59440000000177
+          "p95_ms": 38.61449999999604
         },
         "cpu": {
           "attempted": 48,
           "successful": 48,
           "failed": 0,
-          "p95_ms": 25.652499999996508
+          "p95_ms": 31.11689999999362
         }
       },
       "target_rps": 50,
@@ -442,58 +442,58 @@
     },
     {
       "name": "Mixed traffic burst: remaining client requests",
-      "attempted": 81929,
-      "successful": 81929,
+      "attempted": 81197,
+      "successful": 81197,
       "failed": 0,
       "concurrency": 64,
       "configured_delay_ms": null,
       "cpu_ms": 5,
-      "elapsed_seconds": 240.5800786,
-      "successful_rps": 340.54773145294,
-      "p50_ms": 172.8680999999924,
-      "p95_ms": 495.57789999997476,
-      "p99_ms": 686.6261999999988,
+      "elapsed_seconds": 251.84391269999998,
+      "successful_rps": 322.41001630530974,
+      "p50_ms": 183.40850000001956,
+      "p95_ms": 504.06080000003567,
+      "p99_ms": 717.7220000000088,
       "statuses": {
-        "200": 81929
+        "200": 81197
       },
       "instances": {
-        "fluxscale-demo-a71cf313-0-store-api-5": 13655,
-        "fluxscale-demo-a71cf313-0-store-api-4": 13655,
-        "fluxscale-demo-a71cf313-0-store-api-2": 13654,
-        "fluxscale-demo-a71cf313-0-store-api-1": 13655,
-        "fluxscale-demo-a71cf313-0-store-api-3": 13655,
-        "fluxscale-demo-a71cf313-0-store-api-6": 13655
+        "fluxscale-demo-f63da854-0-store-api-1": 13533,
+        "fluxscale-demo-f63da854-0-store-api-3": 13533,
+        "fluxscale-demo-f63da854-0-store-api-2": 13532,
+        "fluxscale-demo-f63da854-0-store-api-4": 13533,
+        "fluxscale-demo-f63da854-0-store-api-6": 13533,
+        "fluxscale-demo-f63da854-0-store-api-5": 13533
       },
       "errors": [],
       "workloads": {
         "read": {
-          "attempted": 28679,
-          "successful": 28679,
+          "attempted": 28420,
+          "successful": 28420,
           "failed": 0,
-          "p95_ms": 289.9133000000147
+          "p95_ms": 296.3693000000203
         },
         "write": {
-          "attempted": 20482,
-          "successful": 20482,
+          "attempted": 20300,
+          "successful": 20300,
           "failed": 0,
-          "p95_ms": 510.38790000000154
+          "p95_ms": 584.492499999993
         },
         "join": {
-          "attempted": 16384,
-          "successful": 16384,
+          "attempted": 16240,
+          "successful": 16240,
           "failed": 0,
-          "p95_ms": 603.6514000000025
+          "p95_ms": 695.2434999999823
         },
         "cpu": {
-          "attempted": 16384,
-          "successful": 16384,
+          "attempted": 16237,
+          "successful": 16237,
           "failed": 0,
-          "p95_ms": 29.394599999999627
+          "p95_ms": 38.801900000020396
         }
       }
     }
   ],
-  "baseline_requests": 358,
+  "baseline_requests": 377,
   "replica_milestones": [
     1,
     6,
@@ -501,7 +501,9 @@
   ],
   "replica_sequence": [
     1,
-    3,
+    4,
+    2,
+    5,
     6,
     1
   ],
@@ -511,8 +513,8 @@
   "maximum_observed_replicas": 6,
   "user_project_isolation": "verified server-side and in browser",
   "video": {
-    "frames": 735,
-    "duration_seconds": 367.5,
+    "frames": 770,
+    "duration_seconds": 385,
     "width": 1440,
     "height": 1000,
     "fps": 24,

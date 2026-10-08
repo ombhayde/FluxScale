@@ -10,7 +10,7 @@ const repository='https://github.com/ombhayde/FluxScale';
 const rows=report.phases.map(p=>`| ${p.name} | ${p.target_rps??'—'} | ${p.attempted.toLocaleString('en-IN')} | ${p.successful.toLocaleString('en-IN')} | ${p.failed} | ${p.dropped_before_send??0} | ${p.successful_rps.toFixed(1)} | ${p.p95_ms?.toFixed(2)??'—'} |`).join('\n');
 const groups={};for(const p of report.phases)for(const [name,w] of Object.entries(p.workloads)){const g=groups[name]??={attempted:0,successful:0,failed:0};for(const key of Object.keys(g))g[key]+=w[key];}
 const workloadRows=Object.entries(groups).map(([name,w])=>`| ${name} | ${w.attempted.toLocaleString('en-IN')} | ${w.successful.toLocaleString('en-IN')} | ${w.failed} |`).join('\n');
-const guide=`# Recorded mixed-workload autoscaling demo
+const guide=`# Measured mixed-workload benchmark
 
 This recording uses two actual accounts and two isolated local Docker deployments.
 Alice sees only Store API, which receives the main workload. Bob sees only Billing
@@ -133,13 +133,6 @@ announcement with \`node scripts/summarize_demo.mjs\`.
 4. Actual scale-out, workload analysis and a ramp of offered-rate targets.
 5. Mixed traffic burst, idle recovery and actual scale-in to one healthy replica.
 
-Attach the MP4 directly to LinkedIn and link this repository. Keep the detailed
-analysis accessible beside the integration guide; do not advertise the workload
-as cloud production certification. Two earlier rehearsals recorded one and two
-HTTP failures respectively and exposed burst scaling churn. The proxy now has
-tested read failover, and scale-in stabilization considers actual recent demand.
-The final mixed run above has its own measured outcome. Sustained production
-reliability still requires representative deployment testing.
 `;
 await copyFile(join(root,'artifacts/demo/traffic-analysis.png'),join(root,'docs/assets/demo-analysis.png'));
 await copyFile(join(root,'artifacts/demo/result.json'),join(root,'docs/assets/demo-result.json'));
@@ -147,33 +140,5 @@ await copyFile(join(root,'artifacts/demo/timeline.json'),join(root,'docs/assets/
 await copyFile(join(root,'artifacts/demo/scale-out.png'),join(root,'docs/assets/demo-scale-out.png'));
 await copyFile(join(root,'artifacts/demo/fleet.png'),join(root,'docs/assets/demo-fleet.png'));
 await copyFile(join(root,'artifacts/demo/workloads.png'),join(root,'docs/assets/demo-workloads.png'));
-await writeFile(join(root,'docs/DEMO.md'),guide);
-await writeFile(join(root,'docs/LINKEDIN.md'),`# LinkedIn announcement draft
-
-I built FluxScale: a self-hosted autoscaling controller with user-specific project analysis.
-
-In this recorded local demo, I sent 1,00,000 application requests through a real
-Docker deployment: ${report.total_successful.toLocaleString('en-IN')} succeeded, ${report.total_failed} failed.
-The workload mixes database reads, POST writes, five-table PostgreSQL joins and CPU work.
-The controller added actual containers from 1 to ${report.maximum_observed_replicas} healthy replicas, then drained and
-scaled back to 1 after traffic stopped.
-
-The recording also shows two separate user accounts. Each sees only their own
-project's live traffic, workload latency, errors, containers and scaling history.
-
-Rust controller + HTTP proxy · Node/Express telemetry SDK · React dashboard.
-The repository includes Docker setup, application integration instructions,
-account/project isolation checks and the measured demo analysis.
-
-I ramped the offered load target to 100,000 RPS and measured actual throughput
-and unsent demand separately. This is a controlled local workload, not a claim of
-100,000 successful RPS or cloud production certification. Developers can integrate
-the supported self-hosted path with their own stateless Dockerized HTTP application.
-
-Code, measured results and integration guide: ${repository}
-
-#Rust #Docker #NodeJS #React #OpenSource #Autoscaling
-
-Attachment: artifacts/demo/fluxscale-demo.mp4
-`);
-console.log('PASS: Demo documentation and LinkedIn draft use measured results.');
+await writeFile(join(root,'docs/BENCHMARK.md'),guide.trimEnd()+'\n');
+console.log('PASS: Measured benchmark documentation updated.');

@@ -65,10 +65,6 @@ export default defineConfig({
             return "query";
           }
 
-          if (id.includes("lucide-react")) {
-            return "icons";
-          }
-
           if (
             id.includes("/react/") ||
             id.includes("/react-dom/") ||

@@ -14,7 +14,7 @@ To integrate your own application, start with [the deployment and SDK guide](doc
 For individual accounts, project isolation and live remote-host reports, use the
 [connected dashboard setup](docs/CONNECTED_DEPLOYMENT.md). Each project connects
 to its own local controller; Docker execution stays on the application's host.
-The [recorded demo and measured analysis](docs/DEMO.md) exercise real scale-out and
+The [mixed-workload benchmark and measured analysis](docs/BENCHMARK.md) exercise real scale-out and
 scale-in with 100,000 application requests and separate users' project dashboards.
 The supplied Compose profile packages the controller and console together, keeps
 the administrative API on host loopback, and reaches replicas over private Docker
@@ -97,7 +97,7 @@ rollback rehearsal; it does not establish compatibility with an older release.
 
 For the complete source/SDK/Windows artifact and container deployment checks, run
 `.\scripts\release.ps1`. The outputs and SHA-256 checksums are placed in `artifacts/`.
-See [release scope](docs/RELEASE.md) and the [announcement draft](docs/LINKEDIN.md).
+See [verification and supported limits](docs/VERIFICATION.md).
 
 ## Endpoints
 

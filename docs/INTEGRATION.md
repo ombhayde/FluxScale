@@ -11,7 +11,7 @@ Application replicas must share an external database or other durable storage.
 FluxScale scales application containers; it does not add database capacity or
 cloud VMs. Size database connection pools for the maximum replica count and
 keep writes out of disposable application container filesystems. The optional
-[mixed-workload demo](DEMO.md) verifies shared PostgreSQL writes across replica removal.
+[mixed-workload demo](BENCHMARK.md) verifies shared PostgreSQL writes across replica removal.
 
 ## 1. Install the SDK and prepare your image
 
