@@ -1,0 +1,528 @@
+{
+  "run_at": "2026-10-08T19:50:17.098Z",
+  "scope": "Two isolated local Docker deployments with distinct user accounts. Primary workload counts application requests only; baseline traffic is separate.",
+  "total_attempted": 100000,
+  "total_successful": 100000,
+  "total_failed": 0,
+  "phases": [
+    {
+      "name": "Mixed workload warm-up",
+      "attempted": 1000,
+      "successful": 1000,
+      "failed": 0,
+      "concurrency": 8,
+      "configured_delay_ms": null,
+      "cpu_ms": 5,
+      "elapsed_seconds": 4.584557000000001,
+      "successful_rps": 218.12358315100013,
+      "p50_ms": 28.489699999998265,
+      "p95_ms": 80.11530000000494,
+      "p99_ms": 128.1284999999989,
+      "statuses": {
+        "200": 1000
+      },
+      "instances": {
+        "fluxscale-demo-a71cf313-0-store-api-1": 1000
+      },
+      "errors": [],
+      "workloads": {
+        "read": {
+          "attempted": 350,
+          "successful": 350,
+          "failed": 0,
+          "p95_ms": 68.35759999999937
+        },
+        "write": {
+          "attempted": 250,
+          "successful": 250,
+          "failed": 0,
+          "p95_ms": 67.34839999999895
+        },
+        "join": {
+          "attempted": 200,
+          "successful": 200,
+          "failed": 0,
+          "p95_ms": 111.58870000000024
+        },
+        "cpu": {
+          "attempted": 200,
+          "successful": 200,
+          "failed": 0,
+          "p95_ms": 52.92320000000109
+        }
+      }
+    },
+    {
+      "name": "CPU pressure with real reads, writes and joins",
+      "attempted": 10000,
+      "successful": 10000,
+      "failed": 0,
+      "concurrency": 64,
+      "configured_delay_ms": null,
+      "cpu_ms": 40,
+      "elapsed_seconds": 43.007791,
+      "successful_rps": 232.51601087812207,
+      "p50_ms": 203.95150000000285,
+      "p95_ms": 730.7421000000031,
+      "p99_ms": 1106.6347000000023,
+      "statuses": {
+        "200": 10000
+      },
+      "instances": {
+        "fluxscale-demo-a71cf313-0-store-api-1": 2006,
+        "fluxscale-demo-a71cf313-0-store-api-3": 1903,
+        "fluxscale-demo-a71cf313-0-store-api-2": 1904,
+        "fluxscale-demo-a71cf313-0-store-api-4": 1395,
+        "fluxscale-demo-a71cf313-0-store-api-5": 1396,
+        "fluxscale-demo-a71cf313-0-store-api-6": 1396
+      },
+      "errors": [],
+      "workloads": {
+        "read": {
+          "attempted": 3500,
+          "successful": 3500,
+          "failed": 0,
+          "p95_ms": 526.5472999999911
+        },
+        "write": {
+          "attempted": 2500,
+          "successful": 2500,
+          "failed": 0,
+          "p95_ms": 728.8686999999991
+        },
+        "join": {
+          "attempted": 2000,
+          "successful": 2000,
+          "failed": 0,
+          "p95_ms": 995.450499999999
+        },
+        "cpu": {
+          "attempted": 2000,
+          "successful": 2000,
+          "failed": 0,
+          "p95_ms": 185.7001999999993
+        }
+      }
+    },
+    {
+      "name": "Mixed offered-rate target: 50 RPS",
+      "attempted": 250,
+      "successful": 250,
+      "failed": 0,
+      "concurrency": 128,
+      "configured_delay_ms": null,
+      "cpu_ms": 5,
+      "elapsed_seconds": 5.056812999999995,
+      "successful_rps": 49.438252907513146,
+      "p50_ms": 22.35099999999511,
+      "p95_ms": 32.3975000000064,
+      "p99_ms": 50.760599999994156,
+      "statuses": {
+        "200": 250
+      },
+      "instances": {
+        "fluxscale-demo-a71cf313-0-store-api-2": 42,
+        "fluxscale-demo-a71cf313-0-store-api-4": 42,
+        "fluxscale-demo-a71cf313-0-store-api-3": 42,
+        "fluxscale-demo-a71cf313-0-store-api-6": 41,
+        "fluxscale-demo-a71cf313-0-store-api-1": 42,
+        "fluxscale-demo-a71cf313-0-store-api-5": 41
+      },
+      "errors": [],
+      "workloads": {
+        "read": {
+          "attempted": 91,
+          "successful": 91,
+          "failed": 0,
+          "p95_ms": 32.70720000000438
+        },
+        "write": {
+          "attempted": 63,
+          "successful": 63,
+          "failed": 0,
+          "p95_ms": 29.588900000002468
+        },
+        "join": {
+          "attempted": 48,
+          "successful": 48,
+          "failed": 0,
+          "p95_ms": 32.43829999999434
+        },
+        "cpu": {
+          "attempted": 48,
+          "successful": 48,
+          "failed": 0,
+          "p95_ms": 34.90890000000945
+        }
+      },
+      "target_rps": 50,
+      "scheduled_requests": 250,
+      "dropped_before_send": 0,
+      "scheduled_seconds": 5
+    },
+    {
+      "name": "Mixed offered-rate target: 300 RPS",
+      "attempted": 1500,
+      "successful": 1500,
+      "failed": 0,
+      "concurrency": 128,
+      "configured_delay_ms": null,
+      "cpu_ms": 5,
+      "elapsed_seconds": 5.1300916,
+      "successful_rps": 292.39243993226165,
+      "p50_ms": 24.125500000009197,
+      "p95_ms": 51.68110000000161,
+      "p99_ms": 104.58699999999953,
+      "statuses": {
+        "200": 1500
+      },
+      "instances": {
+        "fluxscale-demo-a71cf313-0-store-api-2": 250,
+        "fluxscale-demo-a71cf313-0-store-api-3": 250,
+        "fluxscale-demo-a71cf313-0-store-api-6": 250,
+        "fluxscale-demo-a71cf313-0-store-api-1": 250,
+        "fluxscale-demo-a71cf313-0-store-api-5": 250,
+        "fluxscale-demo-a71cf313-0-store-api-4": 250
+      },
+      "errors": [],
+      "workloads": {
+        "read": {
+          "attempted": 525,
+          "successful": 525,
+          "failed": 0,
+          "p95_ms": 42.259799999999814
+        },
+        "write": {
+          "attempted": 375,
+          "successful": 375,
+          "failed": 0,
+          "p95_ms": 51.87029999999504
+        },
+        "join": {
+          "attempted": 300,
+          "successful": 300,
+          "failed": 0,
+          "p95_ms": 101.36619999998948
+        },
+        "cpu": {
+          "attempted": 300,
+          "successful": 300,
+          "failed": 0,
+          "p95_ms": 40.79080000000249
+        }
+      },
+      "target_rps": 300,
+      "scheduled_requests": 1500,
+      "dropped_before_send": 0,
+      "scheduled_seconds": 5
+    },
+    {
+      "name": "Mixed offered-rate target: 1,000 RPS",
+      "attempted": 1622,
+      "successful": 1622,
+      "failed": 0,
+      "concurrency": 128,
+      "configured_delay_ms": null,
+      "cpu_ms": 5,
+      "elapsed_seconds": 5.395016200000013,
+      "successful_rps": 300.6478460620741,
+      "p50_ms": 338.1634000000049,
+      "p95_ms": 941.2897999999986,
+      "p99_ms": 1268.183899999989,
+      "statuses": {
+        "200": 1622
+      },
+      "instances": {
+        "fluxscale-demo-a71cf313-0-store-api-6": 271,
+        "fluxscale-demo-a71cf313-0-store-api-4": 270,
+        "fluxscale-demo-a71cf313-0-store-api-2": 270,
+        "fluxscale-demo-a71cf313-0-store-api-5": 271,
+        "fluxscale-demo-a71cf313-0-store-api-1": 270,
+        "fluxscale-demo-a71cf313-0-store-api-3": 270
+      },
+      "errors": [],
+      "workloads": {
+        "read": {
+          "attempted": 569,
+          "successful": 569,
+          "failed": 0,
+          "p95_ms": 777.6396000000095
+        },
+        "write": {
+          "attempted": 405,
+          "successful": 405,
+          "failed": 0,
+          "p95_ms": 1064.508999999991
+        },
+        "join": {
+          "attempted": 324,
+          "successful": 324,
+          "failed": 0,
+          "p95_ms": 1087.778999999995
+        },
+        "cpu": {
+          "attempted": 324,
+          "successful": 324,
+          "failed": 0,
+          "p95_ms": 84.53720000000612
+        }
+      },
+      "target_rps": 1000,
+      "scheduled_requests": 5000,
+      "dropped_before_send": 3378,
+      "scheduled_seconds": 5
+    },
+    {
+      "name": "Mixed offered-rate target: 10,000 RPS",
+      "attempted": 1710,
+      "successful": 1710,
+      "failed": 0,
+      "concurrency": 128,
+      "configured_delay_ms": null,
+      "cpu_ms": 5,
+      "elapsed_seconds": 5.598072,
+      "successful_rps": 305.46230916644157,
+      "p50_ms": 346.088499999998,
+      "p95_ms": 875.2289000000019,
+      "p99_ms": 1144.4784000000072,
+      "statuses": {
+        "200": 1710
+      },
+      "instances": {
+        "fluxscale-demo-a71cf313-0-store-api-1": 285,
+        "fluxscale-demo-a71cf313-0-store-api-3": 285,
+        "fluxscale-demo-a71cf313-0-store-api-2": 285,
+        "fluxscale-demo-a71cf313-0-store-api-4": 285,
+        "fluxscale-demo-a71cf313-0-store-api-5": 285,
+        "fluxscale-demo-a71cf313-0-store-api-6": 285
+      },
+      "errors": [],
+      "workloads": {
+        "read": {
+          "attempted": 602,
+          "successful": 602,
+          "failed": 0,
+          "p95_ms": 678.5221999999922
+        },
+        "write": {
+          "attempted": 428,
+          "successful": 428,
+          "failed": 0,
+          "p95_ms": 951.47570000001
+        },
+        "join": {
+          "attempted": 340,
+          "successful": 340,
+          "failed": 0,
+          "p95_ms": 1039.6169999999984
+        },
+        "cpu": {
+          "attempted": 340,
+          "successful": 340,
+          "failed": 0,
+          "p95_ms": 44.315400000006775
+        }
+      },
+      "target_rps": 10000,
+      "scheduled_requests": 50000,
+      "dropped_before_send": 48290,
+      "scheduled_seconds": 5
+    },
+    {
+      "name": "Mixed offered-rate target: 1,00,000 RPS",
+      "attempted": 1739,
+      "successful": 1739,
+      "failed": 0,
+      "concurrency": 128,
+      "configured_delay_ms": null,
+      "cpu_ms": 5,
+      "elapsed_seconds": 5.496287199999991,
+      "successful_rps": 316.39540233632675,
+      "p50_ms": 311.2460999999894,
+      "p95_ms": 879.569399999993,
+      "p99_ms": 1072.9816999999894,
+      "statuses": {
+        "200": 1739
+      },
+      "instances": {
+        "fluxscale-demo-a71cf313-0-store-api-5": 289,
+        "fluxscale-demo-a71cf313-0-store-api-1": 290,
+        "fluxscale-demo-a71cf313-0-store-api-2": 290,
+        "fluxscale-demo-a71cf313-0-store-api-3": 290,
+        "fluxscale-demo-a71cf313-0-store-api-4": 290,
+        "fluxscale-demo-a71cf313-0-store-api-6": 290
+      },
+      "errors": [],
+      "workloads": {
+        "read": {
+          "attempted": 609,
+          "successful": 609,
+          "failed": 0,
+          "p95_ms": 727.6125000000029
+        },
+        "write": {
+          "attempted": 435,
+          "successful": 435,
+          "failed": 0,
+          "p95_ms": 996.6009000000049
+        },
+        "join": {
+          "attempted": 348,
+          "successful": 348,
+          "failed": 0,
+          "p95_ms": 949.8313999999955
+        },
+        "cpu": {
+          "attempted": 347,
+          "successful": 347,
+          "failed": 0,
+          "p95_ms": 49.67630000000645
+        }
+      },
+      "target_rps": 100000,
+      "scheduled_requests": 500000,
+      "dropped_before_send": 498261,
+      "scheduled_seconds": 5
+    },
+    {
+      "name": "Mixed offered-rate target: 50 RPS",
+      "attempted": 250,
+      "successful": 250,
+      "failed": 0,
+      "concurrency": 128,
+      "configured_delay_ms": null,
+      "cpu_ms": 5,
+      "elapsed_seconds": 5.068583700000003,
+      "successful_rps": 49.32344315434701,
+      "p50_ms": 22.7786000000051,
+      "p95_ms": 29.702000000004773,
+      "p99_ms": 44.00890000000072,
+      "statuses": {
+        "200": 250
+      },
+      "instances": {
+        "fluxscale-demo-a71cf313-0-store-api-5": 42,
+        "fluxscale-demo-a71cf313-0-store-api-4": 42,
+        "fluxscale-demo-a71cf313-0-store-api-2": 42,
+        "fluxscale-demo-a71cf313-0-store-api-6": 41,
+        "fluxscale-demo-a71cf313-0-store-api-1": 41,
+        "fluxscale-demo-a71cf313-0-store-api-3": 42
+      },
+      "errors": [],
+      "workloads": {
+        "read": {
+          "attempted": 91,
+          "successful": 91,
+          "failed": 0,
+          "p95_ms": 25.504099999991013
+        },
+        "write": {
+          "attempted": 63,
+          "successful": 63,
+          "failed": 0,
+          "p95_ms": 35.06470000000263
+        },
+        "join": {
+          "attempted": 48,
+          "successful": 48,
+          "failed": 0,
+          "p95_ms": 33.59440000000177
+        },
+        "cpu": {
+          "attempted": 48,
+          "successful": 48,
+          "failed": 0,
+          "p95_ms": 25.652499999996508
+        }
+      },
+      "target_rps": 50,
+      "scheduled_requests": 250,
+      "dropped_before_send": 0,
+      "scheduled_seconds": 5
+    },
+    {
+      "name": "Mixed traffic burst: remaining client requests",
+      "attempted": 81929,
+      "successful": 81929,
+      "failed": 0,
+      "concurrency": 64,
+      "configured_delay_ms": null,
+      "cpu_ms": 5,
+      "elapsed_seconds": 240.5800786,
+      "successful_rps": 340.54773145294,
+      "p50_ms": 172.8680999999924,
+      "p95_ms": 495.57789999997476,
+      "p99_ms": 686.6261999999988,
+      "statuses": {
+        "200": 81929
+      },
+      "instances": {
+        "fluxscale-demo-a71cf313-0-store-api-5": 13655,
+        "fluxscale-demo-a71cf313-0-store-api-4": 13655,
+        "fluxscale-demo-a71cf313-0-store-api-2": 13654,
+        "fluxscale-demo-a71cf313-0-store-api-1": 13655,
+        "fluxscale-demo-a71cf313-0-store-api-3": 13655,
+        "fluxscale-demo-a71cf313-0-store-api-6": 13655
+      },
+      "errors": [],
+      "workloads": {
+        "read": {
+          "attempted": 28679,
+          "successful": 28679,
+          "failed": 0,
+          "p95_ms": 289.9133000000147
+        },
+        "write": {
+          "attempted": 20482,
+          "successful": 20482,
+          "failed": 0,
+          "p95_ms": 510.38790000000154
+        },
+        "join": {
+          "attempted": 16384,
+          "successful": 16384,
+          "failed": 0,
+          "p95_ms": 603.6514000000025
+        },
+        "cpu": {
+          "attempted": 16384,
+          "successful": 16384,
+          "failed": 0,
+          "p95_ms": 29.394599999999627
+        }
+      }
+    }
+  ],
+  "baseline_requests": 358,
+  "replica_milestones": [
+    1,
+    6,
+    1
+  ],
+  "replica_sequence": [
+    1,
+    3,
+    6,
+    1
+  ],
+  "database_writes_committed": 25001,
+  "acknowledged_database_writes": 25001,
+  "host_maximum_replicas": 6,
+  "maximum_observed_replicas": 6,
+  "user_project_isolation": "verified server-side and in browser",
+  "video": {
+    "frames": 735,
+    "duration_seconds": 367.5,
+    "width": 1440,
+    "height": 1000,
+    "fps": 24,
+    "capture_fps": 2
+  },
+  "limitations": [
+    "Controlled local test, not cloud production validation",
+    "Controlled benchmark database and bounded CPU loops; not production data",
+    "Offered rate targets are not achieved throughput; generator drops unsent demand when concurrency is exhausted",
+    "100000 total requests, not 100000 requests per second",
+    "No cloud VM provisioning or HA claim"
+  ]
+}

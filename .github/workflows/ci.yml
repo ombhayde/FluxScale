@@ -1,0 +1,52 @@
+name: Build and integration
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Rust checks
+        run: |
+          rustup toolchain install stable --profile minimal --component rustfmt
+          cargo +stable fmt --check
+          cargo +stable test --locked -j 2
+      - name: SDK and console
+        run: |
+          node --test connected/test/*.mjs
+          npm ci --prefix sdk/node --no-audit --no-fund
+          npm test --prefix sdk/node
+          npm ci --prefix dashboard-react --no-audit --no-fund
+          npm run build --prefix dashboard-react
+          npm run lint --prefix dashboard-react
+          npm test --prefix dashboard-react
+          mkdir -p artifacts
+          cd sdk/node
+          npm pack --pack-destination ../../artifacts
+      - name: Consumer SDK integration
+        run: |
+          node scripts/verify_contract.mjs
+          node scripts/verify_sdk_package.mjs
+      - name: Container deployment
+        run: |
+          docker build -f sdk/node/examples/express/Dockerfile -t fluxscale/express-demo:v1 .
+          docker compose -f deploy/compose.yaml build
+          docker build -f connected/Dockerfile -t fluxscale/connected:0.1.0 .
+        env:
+          FLUXSCALE_READ_TOKEN: ci-placeholder-read-token-not-a-real-credential
+          FLUXSCALE_INGEST_TOKEN: ci-placeholder-ingest-token-not-a-real-credential
+          FLUXSCALE_MANAGED_TOKEN: ci-placeholder-managed-token-not-a-real-credential
+      - name: Real quota and deployed workload checks
+        run: |
+          node scripts/verify_sdk_resources.mjs
+          docker pull postgres:18-alpine
+          node scripts/verify_mixed_workloads.mjs
+          node scripts/verify_deployment.mjs

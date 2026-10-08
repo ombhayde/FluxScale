@@ -1,0 +1,31 @@
+[server]
+bind = "0.0.0.0:8080"
+dashboard_path = "/app/console"
+
+[proxy]
+bind = "0.0.0.0:8081"
+max_body_bytes = 1048576
+
+[docker]
+enabled = true
+image = "fluxscale/express-demo:v1"
+network = "fluxscale-app"
+name_prefix = "fluxscale-deploy"
+container_port = 3000
+port_block_size = 4
+supervision_enabled = true
+supervision_interval_seconds = 2
+telemetry_endpoint = "http://controller:8080"
+environment = ["FLUXSCALE_MANAGED_TOKEN"]
+cpus = 1.0
+memory_mb = 256
+
+[scaling]
+min_replicas = 1
+max_replicas = 3
+scale_up_cooldown_seconds = 5
+scale_down_cooldown_seconds = 10
+
+[security]
+enabled = true
+public_health = true

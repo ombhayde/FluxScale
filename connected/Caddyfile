@@ -1,0 +1,3 @@
+{$FLUXSCALE_HUB_DOMAIN} {
+    reverse_proxy hub:8090
+}

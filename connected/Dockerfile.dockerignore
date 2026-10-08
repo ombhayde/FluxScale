@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+**/*_v[0-9]*
+.fluxscale
+data
+target
+artifacts
+.git
+**/*.env
+docs

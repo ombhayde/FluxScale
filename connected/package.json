@@ -1,0 +1,8 @@
+{
+  "name": "fluxscale-connected",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24.18.0 <25" },
+  "scripts": { "start": "node server.mjs", "agent": "node agent.mjs", "test": "node --test test/*.mjs" }
+}

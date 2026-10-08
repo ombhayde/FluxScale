@@ -1,0 +1,54 @@
+[server]
+bind = "127.0.0.1:8080"
+
+[proxy]
+bind = "127.0.0.1:8081"
+max_body_bytes = 1048576
+
+[ingestion]
+max_past_age_seconds = 900
+max_future_skew_seconds = 30
+instance_stale_after_seconds = 10
+
+[docker]
+enabled = true
+image = "fluxscale/demo-service:phase2"
+container_port = 3000
+host_port_base = 12000
+port_block_size = 25
+name_prefix = "fluxscale"
+health_timeout_seconds = 15
+drain_timeout_seconds = 5
+supervision_enabled = true
+supervision_interval_seconds = 2
+unhealthy_threshold = 3
+
+[scaling]
+min_replicas = 1
+max_replicas = 20
+prediction_horizon_seconds = 10
+history_limit = 120
+scale_up_cooldown_seconds = 5
+scale_down_cooldown_seconds = 10
+scale_down_utilization = 0.45
+target_p95_latency_ms = 500.0
+max_error_rate = 0.05
+
+# Phase 7A remains backward-compatible until this switch is enabled.
+# Tokens are read only from environment variables; never place token values here.
+[security]
+enabled = false
+public_health = true
+read_token_env = "FLUXSCALE_READ_TOKEN"
+ingest_token_env = "FLUXSCALE_INGEST_TOKEN"
+managed_token_env = "FLUXSCALE_MANAGED_TOKEN"
+
+# Phase 7I control-plane operational protection.
+# Limits are isolated by route class and credential fingerprint.
+[operations]
+rate_limiting_enabled = true
+audit_capacity = 2000
+health_requests_per_minute = 600
+read_requests_per_minute = 1200
+ingest_requests_per_minute = 12000
+audit_requests_per_minute = 120

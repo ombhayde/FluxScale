@@ -1,0 +1,13 @@
+**/node_modules
+**/dist
+**/*_v*
+**/*phase*
+**/*before*
+**/*backup*
+**/*_initial*
+target
+data
+.fluxscale
+.git
+artifacts
+*.log

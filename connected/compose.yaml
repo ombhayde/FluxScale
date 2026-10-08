@@ -1,0 +1,41 @@
+services:
+  hub:
+    image: fluxscale/connected:0.1.0
+    build:
+      context: ..
+      dockerfile: connected/Dockerfile
+    restart: unless-stopped
+    environment:
+      FLUXSCALE_HUB_ORIGIN: https://${FLUXSCALE_HUB_DOMAIN:?Set the HTTPS domain}
+    volumes:
+      - hub-state:/data
+    networks: [hub]
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8090/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    mem_limit: 768m
+    cpus: 2
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  ingress:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443", "443:443/udp"]
+    environment:
+      FLUXSCALE_HUB_DOMAIN: ${FLUXSCALE_HUB_DOMAIN:?Set the HTTPS domain}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ingress-data:/data
+      - ingress-config:/config
+    networks: [hub]
+    depends_on:
+      hub:
+        condition: service_healthy
+volumes:
+  hub-state:
+  ingress-data:
+  ingress-config:
+networks:
+  hub:

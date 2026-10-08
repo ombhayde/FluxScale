@@ -1,0 +1,16 @@
+/target
+*.log
+.DS_Store
+/.fluxscale/
+/data/
+**/node_modules/
+**/dist/
+**/artifacts/
+**/__pycache__/
+*.env
+deploy/.env
+connected/agent.json
+connected/data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm

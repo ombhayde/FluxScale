@@ -1,0 +1,5 @@
+{
+  "hub": "https://fluxscale.example.com",
+  "controller": "http://127.0.0.1:8080",
+  "service": "my-orders-api"
+}

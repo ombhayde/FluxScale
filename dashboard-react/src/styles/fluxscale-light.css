@@ -1,0 +1,76 @@
+:root,
+.fluxscale-light {
+  color-scheme: light;
+  --background: oklch(0.985 0.006 255);
+  --foreground: oklch(0.2 0.035 258);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.035 258);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.035 258);
+  --primary: oklch(0.52 0.22 273);
+  --primary-foreground: oklch(0.985 0.005 255);
+  --secondary: oklch(0.96 0.015 255);
+  --secondary-foreground: oklch(0.3 0.05 260);
+  --muted: oklch(0.965 0.01 255);
+  --muted-foreground: oklch(0.5 0.035 258);
+  --accent: oklch(0.95 0.03 265);
+  --accent-foreground: oklch(0.42 0.18 272);
+  --destructive: oklch(0.58 0.23 28);
+  --border: oklch(0.91 0.018 255);
+  --input: oklch(0.91 0.018 255);
+  --ring: oklch(0.58 0.2 273);
+  --radius: 0.9rem;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background: #f7f9fc;
+}
+
+.fluxscale-light {
+  background:
+    radial-gradient(circle at 12% -5%, rgb(99 102 241 / 0.09), transparent 28rem),
+    radial-gradient(circle at 94% 16%, rgb(6 182 212 / 0.07), transparent 30rem),
+    #f7f9fc;
+  color: #172033;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+.fluxscale-grid {
+  background-image:
+    linear-gradient(rgb(148 163 184 / 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(148 163 184 / 0.09) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+.fluxscale-light ::selection {
+  background: rgb(199 210 254);
+  color: rgb(30 41 59);
+}
+
+.fluxscale-light :focus-visible {
+  outline: 3px solid rgb(99 102 241 / 0.24);
+  outline-offset: 2px;
+}
+
+.fluxscale-light * {
+  scrollbar-color: rgb(203 213 225) transparent;
+  scrollbar-width: thin;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fluxscale-light *,
+  .fluxscale-light *::before,
+  .fluxscale-light *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

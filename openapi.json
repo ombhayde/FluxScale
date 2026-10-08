@@ -1,0 +1,626 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FluxScale Control API",
+    "version": "0.5.0-rc.1",
+    "description": "Single-controller Docker autoscaling. Ingest authorization depends on execution mode; read access is a distinct role. Replica reconciliation is asynchronous. Public health follows configuration."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8080"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Liveness, version, capabilities and dependency status",
+        "description": "Public when security.public_health is true; otherwise requires the read role. Liveness does not imply readiness.",
+        "security": [
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/observability/ready": {
+      "get": {
+        "summary": "Public generic readiness",
+        "security": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Ready"
+          },
+          "503": {
+            "$ref": "#/components/responses/Ready"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/observability/metrics": {
+      "get": {
+        "summary": "Read-role Prometheus exposition",
+        "responses": {
+          "200": {
+            "description": "Fresh fleet traffic, capacity phase and operational gauges; latency in seconds",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/services": {
+      "get": {
+        "summary": "Read-role service snapshots",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/services/{service}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Service"
+        }
+      ],
+      "get": {
+        "summary": "Read-role service snapshot",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/services/{service}/metrics": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Service"
+        }
+      ],
+      "get": {
+        "summary": "Read-role ordered aggregate metric history",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/services/{service}/instances": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Service"
+        }
+      ],
+      "get": {
+        "summary": "Read-role per-instance samples and freshness",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/services/{service}/capacity": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Service"
+        }
+      ],
+      "get": {
+        "summary": "Read-role capacity phase, confidence and provisional estimate",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/backends/{service}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Service"
+        }
+      ],
+      "get": {
+        "summary": "Read-role replica health, draining and outstanding request counts",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/persistence": {
+      "get": {
+        "summary": "Read-role checkpoint status and restore source/counts",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/dashboard/overview": {
+      "get": {
+        "summary": "Read-role fleet overview, estimated capacity, decisions and persistence",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/decisions": {
+      "get": {
+        "summary": "Read-role newest decisions first",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/audit": {
+      "get": {
+        "summary": "Read-role bounded credential-free request audit",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Json"
+          },
+          "default": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/metrics": {
+      "post": {
+        "summary": "Ingest telemetry and return a scaling decision",
+        "description": "Observe-only requires the ingest role and never changes Docker. Managed requires the managed role. Explicit source timestamps are deduplicated by service/instance/timestamp; duplicates return the original decision. Stale, future and out-of-order timestamps are rejected. SDK instance metrics aggregate only fresh instances. An accepted sample is checkpointed periodically, not synchronously committed. Service identity must remain stable.",
+        "parameters": [
+          {
+            "name": "X-FluxScale-Execution-Mode",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "observe_only",
+                "managed"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Ingest"
+          },
+          "200": {
+            "$ref": "#/components/responses/Ingest"
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/v1/services/{service}/policy": {
+      "parameters": [
+        {
+          "name": "service",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Read applied policy and authoritative host bounds (read role)",
+        "responses": {
+          "200": {
+            "description": "Current policy and host bounds"
+          }
+        }
+      },
+      "post": {
+        "summary": "Persist a versioned scaling policy (managed role)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicePolicy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Policy persisted, replay is idempotent"
+          },
+          "400": {
+            "description": "Invalid policy or outside configured host bounds"
+          },
+          "409": {
+            "description": "Stale or conflicting policy version"
+          },
+          "503": {
+            "description": "Checkpoint failed; retry this version"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Distinct read, ingest and managed tokens. Exact route/execution-mode role required. No token values belong in URLs."
+      }
+    },
+    "parameters": {
+      "Service": {
+        "name": "service",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "Json": {
+        "description": "JSON response; every response carries X-Request-Id",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "Error": {
+        "description": "JSON error; 401 unauthenticated, 403 wrong role, 404 unknown service, 429 rate limited. Rejected ingestion does not mutate service state.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "Ready": {
+        "description": "Generic ok/degraded readiness; no credential or dependency detail",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ok",
+                    "degraded"
+                  ]
+                },
+                "probe": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Ingest": {
+        "description": "202 newly accepted, 200 duplicate; reconciliation occurs in the background",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "accepted",
+                "duplicate",
+                "decision"
+              ],
+              "properties": {
+                "accepted": {
+                  "type": "boolean"
+                },
+                "duplicate": {
+                  "type": "boolean"
+                },
+                "decision": {
+                  "$ref": "#/components/schemas/Decision"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "MetricInput": {
+        "type": "object",
+        "required": [
+          "service",
+          "requests_per_second",
+          "current_replicas"
+        ],
+        "properties": {
+          "service": {
+            "type": "string",
+            "minLength": 1
+          },
+          "instance_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[a-zA-Z0-9._:-]+$"
+          },
+          "timestamp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Defaults to controller clock when absent"
+          },
+          "requests_per_second": {
+            "type": "number",
+            "minimum": 0
+          },
+          "active_requests": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "p95_latency_ms": {
+            "type": "number",
+            "minimum": 0,
+            "default": 0
+          },
+          "error_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0
+          },
+          "cpu_percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 0
+          },
+          "memory_percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 0
+          },
+          "current_replicas": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "workloads": {
+            "type": "array",
+            "maxItems": 8,
+            "items": {
+              "$ref": "#/components/schemas/WorkloadMetric"
+            },
+            "description": "Requires instance_id and unique labels; failed counts cannot exceed completed counts."
+          }
+        }
+      },
+      "Decision": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "service": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "action": {
+            "enum": [
+              "scale_up",
+              "scale_down",
+              "hold"
+            ]
+          },
+          "current_replicas": {
+            "type": "integer"
+          },
+          "desired_replicas": {
+            "type": "integer"
+          },
+          "current_rps": {
+            "type": "number"
+          },
+          "predicted_rps": {
+            "type": "number"
+          },
+          "prediction_horizon_seconds": {
+            "type": "integer"
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ServicePolicy": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "version",
+          "enabled",
+          "min_replicas",
+          "max_replicas"
+        ],
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "min_replicas": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "max_replicas": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      },
+      "WorkloadMetric": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "requests_per_second",
+          "completed_requests",
+          "failed_requests",
+          "p95_latency_ms"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9._-]{1,32}$"
+          },
+          "requests_per_second": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000000
+          },
+          "completed_requests": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000000
+          },
+          "failed_requests": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "p95_latency_ms": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 86400000
+          }
+        }
+      }
+    }
+  }
+}

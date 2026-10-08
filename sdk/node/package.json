@@ -1,0 +1,44 @@
+{
+  "name": "@fluxscale/node",
+  "version": "0.1.0",
+  "description": "Low-overhead Node.js and Express telemetry SDK for FluxScale.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/index.*",
+    "dist/resources.*"
+  ],
+  "scripts": {
+    "prepack": "npm run build",
+    "test": "npm run build && node --test test/*.mjs",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "keywords": [
+    "fluxscale",
+    "autoscaling",
+    "express",
+    "telemetry",
+    "observability"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "express": ">=4.18.0 <6.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": ">=20.0.0 <26.0.0",
+    "express": ">=4.18.0 <6.0.0",
+    "typescript": ">=5.7.0 <7.0.0"
+  }
+}

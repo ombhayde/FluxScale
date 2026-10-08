@@ -1,0 +1,25 @@
+services:
+  controller:
+    image: fluxscale/controller:0.5.0-rc.1
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:8081:8081"
+    environment:
+      FLUXSCALE_READ_TOKEN: ${FLUXSCALE_READ_TOKEN:?Set a distinct read token}
+      FLUXSCALE_INGEST_TOKEN: ${FLUXSCALE_INGEST_TOKEN:?Set a distinct ingest token}
+      FLUXSCALE_MANAGED_TOKEN: ${FLUXSCALE_MANAGED_TOKEN:?Set a distinct managed token}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./fluxscale.toml:/app/fluxscale.toml:ro
+      - state:/data
+    networks:
+      - app
+networks:
+  app:
+    name: fluxscale-app
+volumes:
+  state:
