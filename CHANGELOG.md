@@ -1,5 +1,12 @@
 # Changelog
 
+## Console refresh - 2026-10-09
+
+- Added a mineral-green console theme, clearer spacing and custom capacity symbols; removed the icon-library dependency.
+- Improved compact-screen metric readability and navigation accessibility labels.
+- Kept public documentation focused on integration, deployment, operations and measured verification.
+- Made Linux quota-test fixture transfer independent of temporary-directory permissions and waited for PostgreSQL TCP readiness.
+
 ## 0.5.0-rc.1 - 2026-10-08
 
 - Managed Express containers now receive unique SDK identities, service names,

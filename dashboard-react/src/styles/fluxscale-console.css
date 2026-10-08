@@ -1265,3 +1265,4 @@ body { background: #f4f3ed; }
 @media (max-width: 640px) { .console-main { padding: 24px 14px 88px; } .console-metric { padding: 18px 12px; } .console-section-heading { align-items: flex-start; flex-direction: column; gap: 12px; } .console-section-heading h2 { font-size: 34px; } .console-panel__header, .console-workbench__bar { padding: 16px; } .console-workbench__content { padding: 16px; } .console-rail { background: #fafaf5; } }
 
 .console-metric__value { font-size: clamp(23px, 2.1vw, 32px); line-height: 1.3; font-weight: 500; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .console-metric__icon { display: none; } .console-metric__value { font-size: 26px; } }
